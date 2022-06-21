@@ -12,9 +12,7 @@ public class MWSearchPageObject extends SearchPageObject {
         SEARCH_RESULT_BY_SUBSTRING_TPL = "xpath://li[@title = '{SUBSTRING}']";
         SEARCH_RESULT_ELEMENT = "css:ul.page-list>li.page-summary";
         SEARCH_EMPTY_RESULT_ELEMENT = "css:p.without-results";
-        SEARCH_FIELD_PLACEHOLDER = "id:Search Wikipedia";
-        SEARCH_RESULT_TITLE = "xpath://XCUIElementTypeCell//XCUIElementTypeStaticText[1]";
-        SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL = "xpath://XCUIElementTypeCell[.//XCUIElementTypeStaticText[1][@value='{TITLE}']][.//XCUIElementTypeStaticText[2][@value = '{DESC}']]";
+        SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL = "xpath://li[@title = '{TITLE}'][.//div [text() = '{DESC}']]";
     }
 
     public MWSearchPageObject(RemoteWebDriver driver) {
