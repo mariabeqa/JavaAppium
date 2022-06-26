@@ -6,6 +6,7 @@ import lib.ui.ArticlePageObject;
 import lib.ui.SearchPageObject;
 import lib.ui.factories.ArticlePageObjectFactory;
 import lib.ui.factories.SearchPageObjectFactory;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.ScreenOrientation;
 
@@ -26,14 +27,14 @@ public class ChangeAppConditionTests extends CoreTestCase {
         this.rotateScreenLandscape();
         String titleAfterRotation = articlePageObject.getArticleTitle();
 
-        assertEquals("Title has been changed after rotation",
+        Assert.assertEquals("Title has been changed after rotation",
                 titleBeforeRotation,
                 titleAfterRotation);
 
         this.rotateScreenPortrait();
         String titleAfterSecondRotation = articlePageObject.getArticleTitle();
 
-        assertEquals("Title has been changed after rotation",
+        Assert.assertEquals("Title has been changed after rotation",
                 titleAfterRotation,
                 titleAfterSecondRotation);
     }

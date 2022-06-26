@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.*;
@@ -7,15 +9,22 @@ import lib.ui.factories.ArticlePageObjectFactory;
 import lib.ui.factories.MyListsPageObjectFactory;
 import lib.ui.factories.NavigationUIFactory;
 import lib.ui.factories.SearchPageObjectFactory;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+@Epic("Tests for articles")
 public class ArticleTests extends CoreTestCase {
 
     private static final String LOGIN = "Mariabeqa";
     private static final String PW = "6522174!";
 
     @Test
+    @Features(value = {@Feature(value = "Search"), @Feature(value = "Article")})
+    @DisplayName("Compare article title with expected one")
+    @Description("We open 'Java Object-oriented programming language' article and make sure the title is expected")
+    @Step("Starting test testCompareArticleTitle")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void testCompareArticleTitle() {
         SearchPageObject searchPageObject = SearchPageObjectFactory.get(driver);
         searchPageObject.initSearchInput();
@@ -26,13 +35,19 @@ public class ArticleTests extends CoreTestCase {
         articlePageObject.waitForTitleElement();
         String articleTitle = articlePageObject.getArticleTitle();
 
-        assertEquals("We see unexpected title",
+        articlePageObject.takeScreenshot("article_page");
+
+        Assert.assertEquals("We see unexpected title",
                 "Java (programming language)",
                 articleTitle);
     }
 
     @Ignore
     @Test
+    @DisplayName("Swipe article to the footer")
+    @Description("We open an article and swipe it to the footer")
+    @Step("Starting test testSwipeArticleTitle")
+    @Severity(value = SeverityLevel.MINOR)
     public void testSwipeArticleTitle() {
         SearchPageObject searchPageObject = SearchPageObjectFactory.get(driver);
         searchPageObject.initSearchInput();
@@ -70,7 +85,7 @@ public class ArticleTests extends CoreTestCase {
             authorizationPageObject.clickAuthBtn();
             authorizationPageObject.enterLoginData(LOGIN, PW);
             authorizationPageObject.submitForm();
-            assertEquals("We are not on the same page after login",
+            Assert.assertEquals("We are not on the same page after login",
                     firstArticleTitle,
                     articlePageObject.getArticleTitle());
         }
@@ -115,7 +130,7 @@ public class ArticleTests extends CoreTestCase {
 
         if (Platform.getInstance().isAndroid()) {
             String actualTitle = articlePageObject.getArticleTitle();
-            assertEquals(secondArticleTitle, actualTitle);
+            Assert.assertEquals(secondArticleTitle, actualTitle);
         } else {
             articlePageObject.waitForTitleElement(secondArticleTitle);
         }
@@ -135,7 +150,7 @@ public class ArticleTests extends CoreTestCase {
         ArticlePageObject articlePageObject = ArticlePageObjectFactory.get(driver);
         String actualTitle = articlePageObject.getArticleTitle();
 
-        assertEquals("Actual title is different from expected title: " + articleTitle,
+        Assert.assertEquals("Actual title is different from expected title: " + articleTitle,
                 articleTitle, actualTitle);
     }
 

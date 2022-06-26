@@ -3,6 +3,7 @@ package tests;
 import lib.CoreTestCase;
 import lib.ui.SearchPageObject;
 import lib.ui.factories.SearchPageObjectFactory;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 
@@ -36,7 +37,7 @@ public class SearchTests extends CoreTestCase {
 
         int amountOfSearchResults = searchPageObject.getAmountOfArticles();
 
-        assertTrue("We found 0 results",
+        Assert.assertTrue("We found 0 results",
                 amountOfSearchResults > 0);
     }
 
@@ -65,7 +66,7 @@ public class SearchTests extends CoreTestCase {
         searchPageObject.typeSearchLine(searchTerm);
         int amountOfSearchResults = searchPageObject.getAmountOfArticles();
 
-        assertTrue("There are no articles found in search results",
+        Assert.assertTrue("There are no articles found in search results",
                 amountOfSearchResults > 1);
 
         searchPageObject.clickCancelSearch();
@@ -82,7 +83,7 @@ public class SearchTests extends CoreTestCase {
         int amountOfSearchResults = searchPageObject.getAmountOfArticles();
         List<WebElement> amountOfArticlesWithSearchTerm = searchPageObject.getArticlesThatContains(searchTerm);
 
-        assertTrue(String.format("Не все результаты содержат %s", searchTerm),
+        Assert.assertTrue(String.format("Не все результаты содержат %s", searchTerm),
                 amountOfSearchResults == amountOfArticlesWithSearchTerm.size());
     }
 
