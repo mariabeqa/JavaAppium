@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.*;
@@ -10,6 +12,7 @@ import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
+@Epic("Tests for articles")
 public class MyListsTests extends CoreTestCase {
 
     private static final String nameOfFolder = "Learning programming";
@@ -17,6 +20,10 @@ public class MyListsTests extends CoreTestCase {
     private static final String PW = "6522174!";
 
     @Test
+    @Features(value = {@Feature(value = "Search"), @Feature(value = "Article"),  @Feature("My list")})
+    @DisplayName("Verify that article is added to My list")
+    @Description("We search for an article, add it to My List and delete it.")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void testFirstArticleToMyList() {
         SearchPageObject searchPageObject = SearchPageObjectFactory.get(driver);
         searchPageObject.initSearchInput();

@@ -1,5 +1,6 @@
 package lib.ui;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class WelcomePageObject extends MainPageObject {
@@ -53,6 +54,7 @@ public class WelcomePageObject extends MainPageObject {
                 10);
     }
 
+    @Step("Skip step")
     public void clickSkip() {
         this.waitForElementAndClick(SKIP_BUTTON,
                 "Cannot find Skip button",

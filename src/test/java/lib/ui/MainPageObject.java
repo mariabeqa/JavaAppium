@@ -5,6 +5,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
@@ -114,6 +115,7 @@ public class MainPageObject {
         swipeUp(200);
     }
 
+    @Step("Scroll web page up")
     public void scrollWebPageUp() {
         if (Platform.getInstance().isMW()) {
             JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -295,6 +297,7 @@ public class MainPageObject {
 
     }
 
+    @Step("Take screenshot")
     public String takeScreenshot(String name) {
         TakesScreenshot ts = (TakesScreenshot) this.driver;
         File source = ts.getScreenshotAs(OutputType.FILE);

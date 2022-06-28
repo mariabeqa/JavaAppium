@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.ArticlePageObject;
@@ -10,9 +12,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.ScreenOrientation;
 
+@Epic("Tests for articles")
 public class ChangeAppConditionTests extends CoreTestCase {
 
     @Test
+    @Features(value = {@Feature(value = "Search"), @Feature(value = "Article")})
+    @DisplayName("Verify that article title is correct after screen rotation")
+    @Description("We search for an article, open it and check title is the same after screen rotation")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testScreenOrientationOnSearchResults() {
         if (Platform.getInstance().isMW()) {
             return;
@@ -40,6 +47,10 @@ public class ChangeAppConditionTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value = "Search"), @Feature(value = "Article")})
+    @DisplayName("Verify search page results after app was in the background")
+    @Description("We search for an article, put an app in the background, get back to the app to check search results")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testCheckSearchArticleInBackground() {
         if (Platform.getInstance().isMW()) {
             return;

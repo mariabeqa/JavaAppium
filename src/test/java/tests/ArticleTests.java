@@ -44,6 +44,7 @@ public class ArticleTests extends CoreTestCase {
 
     @Ignore
     @Test
+    @Feature(value = "Article")
     @DisplayName("Swipe article to the footer")
     @Description("We open an article and swipe it to the footer")
     @Step("Starting test testSwipeArticleTitle")
@@ -60,6 +61,10 @@ public class ArticleTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value = "Search"), @Feature(value = "Article"), @Feature(value = "My list")})
+    @DisplayName("Verify article title after other article in My Lists is deleted")
+    @Description("We add two articles to My List and then delete one of the articles from My List.")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testArticleTitleAfterDeletion() {
         String searchWord = "Selenium";
         String nameOfFolder = "Learning Selenium";
@@ -138,6 +143,10 @@ public class ArticleTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value = "Search"), @Feature(value = "Article")})
+    @DisplayName("Verify article title after we open an article")
+    @Description("We search for an article and open it to check title")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testArticleTitle() {
         String searchWord = "Selenium";
         String articleTitle = "Selenium (software)";

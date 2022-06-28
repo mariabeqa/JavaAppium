@@ -1,5 +1,6 @@
 package lib.ui;
 
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -27,6 +28,7 @@ public abstract class MyListsPageObject extends MainPageObject {
         return REMOVE_FROM_SAVED_BUTTON.replace("{TITLE}", articleTitle);
     }
 
+    @Step("Open folder named '{folderName}'")
     public void openFolderByName(String folderName) {
         String folderNameXpath = getFolderXpathByName(folderName);
         this.waitForElementAndClick(folderNameXpath,
@@ -34,6 +36,7 @@ public abstract class MyListsPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Swipe article with title '{articleTitle}' to delete")
     public void swipeByArticleToDelete(String articleTitle) {
         this.waitForArticleAppearByTitle(articleTitle);
         String articleTitleXpath = getSavedArticleXpathByName(articleTitle);
@@ -58,6 +61,7 @@ public abstract class MyListsPageObject extends MainPageObject {
         this.waitForArticleDisappearByTitle(articleTitle);
     }
 
+    @Step("Wait for article with title '{articleTitle}' to disappear")
     public void waitForArticleDisappearByTitle(String articleTitle) {
         String articleTitleXpath = getSavedArticleXpathByName(articleTitle);
 
@@ -66,6 +70,7 @@ public abstract class MyListsPageObject extends MainPageObject {
                 15);
     }
 
+    @Step("Wait for article with title '{articleTitle}' to appear")
     public void waitForArticleAppearByTitle(String articleTitle) {
         String articleTitleXpath = getSavedArticleXpathByName(articleTitle);
 
@@ -74,6 +79,7 @@ public abstract class MyListsPageObject extends MainPageObject {
                 15);
     }
 
+    @Step("Open article with title '{articleTitle}'")
     public void openArticleByTitle(String articleTitle) {
         this.waitForArticleAppearByTitle(articleTitle);
         String articleTitleXpath = getSavedArticleXpathByName(articleTitle);
@@ -83,6 +89,7 @@ public abstract class MyListsPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Dismiss Login pop-up")
     public void dismissLogInPopUp() {
         if (Platform.getInstance().isIOS()) {
             this.waitForElementAndClick(CLOSE_LOGIN_POPUP,
